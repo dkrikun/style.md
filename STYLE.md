@@ -23,9 +23,17 @@ Good:
 
 ### #include in header files ###
 * Each header file must have `#pragma once` include guard.  
-* A header file must not `#include` any other header file that is not essential for the header file itself, that is, for the compilation of a hypothetical source code file that only consists of an `#include` to the header file to succeed
+* A header file must not `#include` any other header file that is not essential for the header file itself.
 * To ensure that, the `#include` directive to the header file providing declarations for the source code file must precede any other statements.
-* For #include directive and preprocessor definitions that are used in few places in the file, it must be noted in the comments for what exactly they are used.
+* If it is not obvious from the code what is the purpose of an `#include` it should be explained, for example:
+
+    #include <string>
+    #include <vector>
+    #define _USE_MATH_DEFINED       // for math constants: PI, PI/2, etc.
+    #include <math.h>
+    #include <conio.h>              // for _kbhit()
+
+* For pointer and reference types it is enough to provide a *forward declaration* instead of including the header that contains the definition of the whole type.
 
 Bad:
 
@@ -55,16 +63,13 @@ Good:
     // foo.cpp
     #include "foo.h"
     #include <windows.h>        // for Sleep
-    #define _USE_MATH_DEFINES   // for math constants
-    #include <math.h>
     
-    #include "cool_cls.h"       // Definition is required here,
-                                // it's ok in the .cpp file
+    #include "cool_cls.h"
     
     void my_fancy_sleep(int msecs_to_sleep, cool_cls* obj)
     {
         obj->bar();
-        Sleep(sqrt(msecs_to_sleep*M_PI));
+        Sleep(msecs_to_sleep);
     }
 
 Bad:
@@ -87,8 +92,7 @@ Bad:
 
     // -----------
     // baz.cpp
-    // that another guy has wrote and he wants to use your foo class
-    // but the compilation will fail
+    // compilation error because std::map is not defined
     
     #include "foo.h"
     // ...
@@ -100,8 +104,6 @@ Good:
     #include "foo.h"        // If foo.cpp compiles successfully then it is guaranteed
                             // that the foo.h has all declarations it requires
                             // because it is the first header to be #included in foo.cpp
-                            
-* For pointer and reference types it is enough to provide a *forward declaration* instead of including the header that contains the definition of the whole type.
 
 ### #if 0 #endif vs. comment-out ###
 * If a piece of code that needs to be temporary disabled is published via version control system, it must be surrounded with `#if 0` and `# endif`.
