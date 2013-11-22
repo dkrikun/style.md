@@ -210,13 +210,13 @@ Good:
     
 
     
-
+### To be expanded:  
 [ ] classes, namespaces, variables in snake case  
 [ ] consts, enums, macros in snake or all caps case  
-[ ] template args unrestricted  
+[ ] template args should be camelcase  
 [ ] class privarte/protected fields end with underscore  
 [ ] no hungarian  
-[ ] no inverted comparisons
+[ ] no inverted comparisons (e.g `if (5 == x)`)   
 [ ] use standard names/pre/suffixes (curr, it, j, count, is_, has_, was_,should_, num_, _count, init_, xcurr, ycurr, xxcurr)  
 [ ] file level namespaces do not inc. indentation level  
 [ ] struct public fields are not suffixed with underscore  
@@ -230,9 +230,9 @@ Good:
 [ ] avoid complex init in ctor (init that might fail or uses virtual dispatch)  
 [ ] use explicit on ctors  
 [ ] disable unnecessary copy-assignment operators  
-[ ] use struct for passive data, functors, wrappers etc. only 
+[ ] use struct for passive data, functors, wrappers etc. only  
 [ ] use set_x, x for set/get. if x is already bound fallback to get_x. also update_x, read_x could be appropriate for complex operatons.  
-[ ] if get/set is both trivial and public consider making the field public and remove getter and setter 
+[ ] if get/set is both trivial and public consider making the field public and remove getter and setter  
 [ ] line length < 80  
 [ ] curly braces either in the same column or in the same line  
 [ ] no trailing whitespace  
