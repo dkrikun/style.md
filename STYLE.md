@@ -23,15 +23,17 @@ Good:
 
 ### #include in header files ###
 * Each header file must have `#pragma once` include guard.  
-* A header file must not `#include` any other header file that is not essential for the header file itself.
-* To ensure that, the `#include` directive to the header file providing declarations for the source code file must precede any other statements.
+* A header file must not include any other header file that is not essential for the header file itself.
+* Order of includes in a .cpp file should be:
+    * the corresponding .h file
+    * standard c/c++ library
 * If it is not obvious from the code what is the purpose of an `#include` it should be explained, for example:
 
-    #include <string>
-    #include <vector>
-    #define _USE_MATH_DEFINED       // for math constants: PI, PI/2, etc.
-    #include <math.h>
-    #include <conio.h>              // for _kbhit()
+        #include <string>
+        #include <vector>
+        #define _USE_MATH_DEFINED       // for math constants: PI, PI/2, etc.
+        #include <math.h>
+        #include <conio.h>              // for _kbhit()
 
 * For pointer and reference types it is enough to provide a *forward declaration* instead of including the header that contains the definition of the whole type.
 
@@ -222,20 +224,18 @@ Good:
 [ ] use standard names/pre/suffixes (curr, it, j, count, is_, has_, was_,should_, num_, _count, init_, xcurr, ycurr, xxcurr)  
 [ ] file level namespaces do not inc. indentation level  
 [ ] struct public fields are not suffixed with underscore  
-[ ] line break is after comma  
 [ ] early exit, no redundant else blocks  
 [ ] prefer omitting curly braces in if, while etc. where appropriate  
 [ ] source code filenames in snake case  
-[ ] usually suffix typedefs with _t  
 [ ] avoid using singletons  
 [ ] avoid using static/global variables if they have non-trivial ctor or dtor  
-[ ] avoid complex init in ctor (init that might fail or uses virtual dispatch)  
+[ ] avoid using virtual dispatch in constructors  
 [ ] use explicit on ctors  
 [ ] disable unnecessary copy-assignment operators  
 [ ] use struct for passive data, functors, wrappers etc. only  
 [ ] use set_x, x for set/get. if x is already bound fallback to get_x. also update_x, read_x could be appropriate for complex operatons.  
 [ ] if get/set is both trivial and public consider making the field public and remove getter and setter  
-[ ] line length < 80  
+[ ] line length < 81  
 [ ] curly braces either in the same column or in the same line  
 [ ] no trailing whitespace  
 [ ] use spaces, not tabs
