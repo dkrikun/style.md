@@ -118,7 +118,8 @@ Commented out code might be error-prone, especially when a code that contains co
 * Do not misuse null pointer check as a check for an invalid pointer, especially when the pointer is never set to null
 * If the pointer is sometimes set to null, but must not be null in a certain place in the code, `assert` it instead of silently skipping statements.
 
-In C++, `0` value of a pointer is not a synonym for an "invalid pointer". In fact, any address that does not belong to the process address space is invalid and is much more troublesome than the null pointer. Using `0` for null pointer is standard C++ and it clarifies the fact that the pointer is nothing more than a type-safe address in memory.
+In C++, `0` value of a pointer is not a synonym for an "invalid pointer". In fact, any address that does not belong to the process address space is invalid and is much more troublesome than the null pointer. ~Using `0` for null pointer is standard C++ and it clarifies the fact that the pointer is nothing more than a type-safe address in memory.~
+**EDIT** (2018): this is questionable, anyway, use `nullptr`.
 
 Bad:
 
